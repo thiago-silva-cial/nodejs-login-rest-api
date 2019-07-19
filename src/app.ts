@@ -1,5 +1,6 @@
 import routes from './routes'
 import express = require('express')
+import bodyparser = require('body-parser')
 
 class App {
   public express: express.Application
@@ -13,6 +14,7 @@ class App {
 
   private middlewares (): void {
     this.express.use(express.json())
+    this.express.use(bodyparser.json())
   }
 
   private routes (): void {

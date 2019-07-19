@@ -51,6 +51,7 @@ UserSchema.pre('save', async (next) : Promise<void> => {
   this.password = await bcrypt.hash(this.password, 8)
 })
 
+// Definie some methods to the User schema
 UserSchema.methods = {
   compareHash (hash) : boolean {
     return bcrypt.compare(hash, this.password)

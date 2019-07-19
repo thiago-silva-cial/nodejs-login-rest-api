@@ -4,3 +4,6 @@ import * as dotenv from 'dotenv'
 dotenv.config({
   path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development'
 })
+
+// MongoDB connection string
+export const mongoConection = process.env.MONGODB_URI.toString()

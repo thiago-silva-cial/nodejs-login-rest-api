@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import HelloController from './controllers/HelloController'
+import UserController from './controllers/UserController'
 
 const routes = Router()
 
-routes.get('/', HelloController.index)
+routes.get('/', UserController.SignUp)
 
 export default routes
