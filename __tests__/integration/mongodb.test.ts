@@ -23,7 +23,29 @@ describe('MongoDB Atlas - CRUD test', () : void => {
           resolve()
         })
         .catch((err) : void => reject(err))
+    })
+  })
+
+  it('should be able to update an existant user', async () : Promise<void> => {
+    return new Promise((resolve, reject) : void => {
+      User.findOneAndUpdate({ email: userMock.email }, { nome: 'new name' }, (err, doc) : void => {
+        if (err) reject(err)
+
+        assert.ok(doc)
+        resolve()
+      })
+    })
+  })
+
+  it('should be able to remove an existant user', async () : Promise<void> => {
+    return new Promise((resolve, reject) : void => {
+      User.findOneAndRemove({ email: userMock.email })
+        .then((result) : void => {
+          assert.ok(result)
+          resolve()
+        })
+        .catch((err) : void => reject(err))
         .finally(() : void => { mongoose.connection.close() })
     })
-  }).timeout(30000)
+  })
 })
