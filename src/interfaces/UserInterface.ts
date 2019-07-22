@@ -6,7 +6,6 @@ interface TelefoneInterface {
 }
 
 export default interface UserInterface extends Document {
-    id: number,
     nome: string,
     email: string,
     senha: string,

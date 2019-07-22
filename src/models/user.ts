@@ -3,16 +3,11 @@ import UserInterface from '../interfaces/UserInterface'
 // Libs
 import { Schema } from 'mongoose'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
-import uuidv1 = require('uuid/v1')
+import * as bcrypt from 'bcryptjs'
 import mongoose = require('mongoose')
 
 // Mongoose schema definition
 const UserSchema: Schema = new Schema({
-  id: {
-    type: Number,
-    required: false
-  },
   nome: {
     type: String,
     required: true
@@ -45,18 +40,23 @@ const UserSchema: Schema = new Schema({
     default: Date.now }
 })
 
-// Mongoose handlers
-UserSchema.pre('save', async (next) : Promise<void> => {
-  // if (!this.isModified('senha')) next()
+// Mongoose middlewares
+UserSchema.pre('save', function (next) : void {
+  // Only encrypt the pass when it's modified/new
+  if (this.isModified('senha')) {
+    let pass = this.get('senha')
 
-  // this.senha = await bcrypt.hash(this.senha, 8)
-  this.id = uuidv1()
+    this.set('senha', bcrypt.hashSync(pass, 8))
+  }
+  next()
 })
 
-// Definie some methods to the User schema
+// Define some methods to the User schema
 UserSchema.methods = {
   compareHash (hash) : boolean {
-    return bcrypt.compare(hash, this.password)
+    let pass = this.get('senha')
+
+    return bcrypt.compareSync(hash, pass)
   },
   generateToken () : string {
     return jwt.sign({ id: this.id }, 'secret', {
