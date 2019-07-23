@@ -1,6 +1,4 @@
-// Interfaces
 import UserInterface from '../interfaces/UserInterface'
-// Libs
 import { Schema } from 'mongoose'
 import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcryptjs'
