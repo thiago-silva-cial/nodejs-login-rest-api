@@ -70,6 +70,9 @@ UserSchema.methods = {
     return jwt.sign({ id: this.id }, 'secret', {
       expiresIn: 86400
     })
+  },
+  updateLastLogin(): void {
+    this.ultimoLogin = Date.now
   }
 }
 

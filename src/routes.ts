@@ -5,4 +5,6 @@ const routes = Router()
 
 routes.post('/user/signup', UserController.SignUp)
 
+routes.post('/user/signin', UserController.SignIn)
+
 export default routes
