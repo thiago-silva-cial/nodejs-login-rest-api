@@ -5,7 +5,7 @@ import mongoose = require('mongoose')
 // MongoDB Connection
 mongoose.connect(mongoConection, { useNewUrlParser: true })
 
-const port = 3000
+let port = process.env.PORT || 3000
 
 app.listen(port)
 
