@@ -12,5 +12,8 @@ export default interface UserInterface extends Document {
     telefones: TelefoneInterface[]
     dataCriacao: Date,
     dataAtualizacao: Date,
-    ultimoLogin: Date
+    ultimoLogin: Date,
+    token: string,
+    generateToken(),
+    compareHash()
 }

@@ -3,6 +3,6 @@ import UserController from './controllers/UserController'
 
 const routes = Router()
 
-routes.get('/', UserController.SignUp)
+routes.post('/user/signup', UserController.SignUp)
 
 export default routes

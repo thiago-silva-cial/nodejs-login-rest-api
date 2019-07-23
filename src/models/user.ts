@@ -20,7 +20,8 @@ const UserSchema: Schema = new Schema({
   },
   senha: {
     type: String,
-    required: true
+    required: true,
+    select: false
   },
   telefones: {
     type: Array,
@@ -29,19 +30,26 @@ const UserSchema: Schema = new Schema({
   dataCriacao: {
     type: Date,
     required: true,
-    default: Date.now },
+    default: Date.now
+  },
   dataAtualizacao: {
     type: Date,
     required: true,
-    default: Date.now },
+    default: Date.now
+  },
   ultimoLogin: {
     type: Date,
     required: true,
-    default: Date.now }
+    default: Date.now
+  },
+  token: {
+    type: String,
+    default: ''
+  }
 })
 
 // Mongoose middlewares
-UserSchema.pre('save', function (next) : void {
+UserSchema.pre('save', function (next): void {
   // Only encrypt the pass when it's modified/new
   if (this.isModified('senha')) {
     let pass = this.get('senha')
@@ -53,12 +61,12 @@ UserSchema.pre('save', function (next) : void {
 
 // Define some methods to the User schema
 UserSchema.methods = {
-  compareHash (hash) : boolean {
+  compareHash(hash): boolean {
     let pass = this.get('senha')
 
     return bcrypt.compareSync(hash, pass)
   },
-  generateToken () : string {
+  generateToken(): string {
     return jwt.sign({ id: this.id }, 'secret', {
       expiresIn: 86400
     })

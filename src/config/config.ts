@@ -6,4 +6,4 @@ dotenv.config({
 })
 
 // MongoDB connection string
-export const mongoConection = process.env.MONGODB_URI.toString()
+export const mongoConection = process.env.MONGODB_URI
