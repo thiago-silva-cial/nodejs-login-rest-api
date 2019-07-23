@@ -1,6 +1,7 @@
 import routes from './routes'
 import express = require('express')
 import bodyparser = require('body-parser')
+import cors from 'cors'
 
 class App {
   public express: express.Application
@@ -12,9 +13,9 @@ class App {
     this.routes()
   }
 
-  private middlewares (): void {
-    this.express.use(express.json())
+  private middlewares (): void {    
     this.express.use(bodyparser.json())
+    this.express.use(cors())
   }
 
   private routes (): void {
