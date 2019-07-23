@@ -17,11 +17,13 @@ export default (req: Request, res: Response, next: NextFunction): Response => {
 
   if (!/^Bearer$/i.test(scheme)) return res.status(401).json({ mensagem: 'Token inválido' })
 
-  jwt.verify(token, jwtSecret, async (err, decoded): Promise<Response> => {
-    if (err) res.status(401).json({ mensagem: 'Não autorizado' })
+  jwt.verify(token, jwtSecret, async (err, decoded): Promise<any> => {
+    if (err) {
+      return res.status(401).json({ mensagem: `${(err.name === 'TokenExpiredError') ? 'Sessão inválida' : 'Não autorizado'}` })
+    }
 
     // Obtem o id do usuário que estava presente no Token
-    let user = await User.findById(decoded['id'])
+    // let user = await User.findById(decoded['id'])
 
     // Valida o tempo limite da sessão
     // TO DO: Recusar a sessão se aberta por mais de 30 minutos
