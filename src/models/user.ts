@@ -2,9 +2,10 @@
 import UserInterface from '../interfaces/UserInterface'
 // Libs
 import { Schema } from 'mongoose'
-import jwt from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcryptjs'
 import mongoose = require('mongoose')
+import { jwtSecret } from '../config/config'
 
 // Mongoose schema definition
 const UserSchema: Schema = new Schema({
@@ -67,12 +68,9 @@ UserSchema.methods = {
     return bcrypt.compareSync(hash, pass)
   },
   generateToken(): string {
-    return jwt.sign({ id: this.id }, 'secret', {
-      expiresIn: 86400
+    return jwt.sign({ id: this._id }, jwtSecret, {
+      expiresIn: 1800 // 30 minutes
     })
-  },
-  updateLastLogin(): void {
-    this.ultimoLogin = Date.now
   }
 }
 

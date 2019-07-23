@@ -7,3 +7,6 @@ dotenv.config({
 
 // MongoDB connection string
 export const mongoConection = process.env.MONGODB_URI
+
+// JWT Secret
+export const jwtSecret = process.env.JWT_SECRET

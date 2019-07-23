@@ -48,6 +48,12 @@ class UserController {
       token: user.generateToken()
     })
   }
+
+  public async Index(req: Request, res: Response): Promise<Response> {
+
+
+    return res.json({ ok: true })
+  }
 }
 
 export default new UserController
