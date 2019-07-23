@@ -1,4 +1,9 @@
 import app from './app'
+import { mongoConection } from './config/config'
+import mongoose = require('mongoose')
+
+// MongoDB Connection
+mongoose.connect(mongoConection, { useNewUrlParser: true })
 
 const port = 3000
 

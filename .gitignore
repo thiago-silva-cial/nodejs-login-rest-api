@@ -5,6 +5,10 @@
 # Bundle folder for production environment
 dist/
 
+#Config files
+.env.development
+.env.production
+
 ### Node ###
 # Logs
 logs
