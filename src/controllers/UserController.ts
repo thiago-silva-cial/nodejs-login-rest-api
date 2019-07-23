@@ -1,10 +1,9 @@
 import { Request, Response } from 'express'
 import User from '../models/user'
 import * as bcrypt from 'bcryptjs'
-import mongoose = require('mongoose')
 
 class UserController {
-  public async SignUp(req: Request, res: Response): Promise<Response> {
+  public async SignUp (req: Request, res: Response): Promise<Response> {
     const { email } = req.body
 
     try {
@@ -14,9 +13,9 @@ class UserController {
 
       return res.json({
         id: user.id,
-        data_criacao: user.dataCriacao,
-        data_atualizacao: user.dataAtualizacao,
-        ultimo_login: user.ultimoLogin,
+        dataCriacao: user.dataCriacao,
+        dataAtualizacao: user.dataAtualizacao,
+        ultimoLogin: user.ultimoLogin,
         token: user.generateToken()
       })
     } catch (error) {
@@ -24,7 +23,7 @@ class UserController {
     }
   }
 
-  public async SignIn(req: Request, res: Response): Promise<Response> {
+  public async SignIn (req: Request, res: Response): Promise<Response> {
     const { email, senha } = req.body
 
     // Busca o usuário
@@ -42,18 +41,26 @@ class UserController {
     // Usuário logado com sucesso
     return res.json({
       id: user.id,
-      data_criacao: user.dataCriacao,
-      data_atualizacao: user.dataAtualizacao,
-      ultimo_login: user.ultimoLogin,
+      dataCriacao: user.dataCriacao,
+      dataAtualizacao: user.dataAtualizacao,
+      ultimoLogin: user.ultimoLogin,
       token: user.generateToken()
     })
   }
 
-  public async Index(req: Request, res: Response): Promise<Response> {
+  public async Index (req: Request, res: Response): Promise<Response> {
+    const userId = req.params.user_id
 
+    let user = await User.findById(userId)
 
-    return res.json({ ok: true })
+    return res.json({
+      id: user.id,
+      dataCriacao: user.dataCriacao,
+      dataAtualizacao: user.dataAtualizacao,
+      ultimoLogin: user.ultimoLogin,
+      token: req['token']
+    })
   }
 }
 
-export default new UserController
+export default new UserController()

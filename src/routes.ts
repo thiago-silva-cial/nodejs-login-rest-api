@@ -8,6 +8,6 @@ routes.post('/user/signup', UserController.SignUp)
 
 routes.post('/user/signin', UserController.SignIn)
 
-routes.get('/user', authMiddleware, UserController.Index)
+routes.get('/user/:user_id', authMiddleware, UserController.Index)
 
 export default routes

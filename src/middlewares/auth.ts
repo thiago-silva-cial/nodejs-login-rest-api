@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import * as jwt from 'jsonwebtoken'
 import { jwtSecret } from '../config/config'
-import User from '../models/user'
 
 export default (req: Request, res: Response, next: NextFunction): Response => {
   const authHeader = req.headers.authorization
@@ -22,13 +21,11 @@ export default (req: Request, res: Response, next: NextFunction): Response => {
       return res.status(401).json({ mensagem: `${(err.name === 'TokenExpiredError') ? 'Sessão inválida' : 'Não autorizado'}` })
     }
 
-    // Obtem o id do usuário que estava presente no Token
-    // let user = await User.findById(decoded['id'])
-
     // Valida o tempo limite da sessão
     // TO DO: Recusar a sessão se aberta por mais de 30 minutos
 
     // Token válido
+    req['token'] = token
     next()
   })
 }
