@@ -69,7 +69,7 @@ UserSchema.methods = {
   },
   generateToken (): string {
     return jwt.sign({ id: this._id }, jwtSecret, {
-      expiresIn: 100// 1800 // 30 minutes
+      expiresIn: 1800 // 30 minutes
     })
   }
 }
