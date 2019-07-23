@@ -1,4 +1,4 @@
-# Node.js REST API boilerplate
+# Node.js REST AUTH API
 
 ## Installation requirements
 
@@ -6,10 +6,6 @@ Before cloning API repository, make sure that you have:
 
  - Installed [Node.js](https://nodejs.org/en/download/) v10.6.0 or greater
  - Installed [Yarn](https://yarnpkg.com/en/docs/install#windows-stable) v1.15.2 or greater
-
-For production environment (hosting using IIS on Windows):
-- Installed [IISNode](https://github.com/tjanczuk/iisnode)
-- Installed [URLRewrite](https://www.iis.net/downloads/microsoft/url-rewrite)
 
 ## Installation
 
