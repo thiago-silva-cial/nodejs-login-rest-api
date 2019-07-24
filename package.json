@@ -5,10 +5,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "SET NODE_ENV=development&& nodemon src/server.ts",
-    "start": "sucrase-node src/server.ts",
+    "prestart": "webpack",
+    "start": "node dist/index.js",
     "test": "SET NODE_ENV=test&& mocha -r ts-node/register __tests__/**/*.test.ts",
-    "build:dev": "SET NODE_ENV=development&& webpack",
-    "build:prod": "SET NODE_ENV=production&& webpack"
+    "build": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
