@@ -4,13 +4,28 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "SET NODE_ENV=development&& nodemon src/server.ts",
+    "dev": "nodemon src/server.ts",
     "prestart": "webpack",
     "start": "node dist/index.js",
-    "test": "SET NODE_ENV=test&& mocha -r ts-node/register __tests__/**/*.test.ts",
+    "test": "mocha -r ts-node/register __tests__/**/*.test.ts",
     "build": "webpack"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-node-externals": "^1.7.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.5",
+    "path": "^0.12.7",
+    "uuid": "^3.3.2",
+    "ts-loader": "^6.0.0",
+    "ts-node": "^8.1.0",
     "@babel/core": "^7.4.4",
     "@types/bcrypt": "^3.0.0",
     "@types/bcryptjs": "^2.4.2",
@@ -39,21 +54,5 @@
     "sucrase": "^3.10.1",
     "supertest": "^4.0.2",
     "typescript": "^3.4.5"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-node-externals": "^1.7.2",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.5",
-    "path": "^0.12.7",
-    "uuid": "^3.3.2",
-    "ts-loader": "^6.0.0",
-    "ts-node": "^8.1.0"
   }
 }
